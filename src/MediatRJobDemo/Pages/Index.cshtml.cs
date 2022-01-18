@@ -1,19 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using NetMQ;
-using NetMQ.Sockets;
 
-namespace WebApp.Pages
+namespace MediatRJobDemo.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly ITaskJob _taskJob;
-
-        public IndexModel(ILogger<IndexModel> logger, ITaskJob taskJob)
+        private readonly IMediator _mediator;
+        public IndexModel(ILogger<IndexModel> logger, IMediator mediator)
         {
             _logger = logger;
-            _taskJob = taskJob;
+            _mediator = mediator;
         }
 
         [BindProperty]
@@ -23,12 +21,12 @@ namespace WebApp.Pages
 
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            _taskJob.Queue.Enqueue(Message);
-
+            await _mediator.Publish(Message);
             TempData["status"] = "Email sent.";
             return Page();
         }
+
     }
 }
