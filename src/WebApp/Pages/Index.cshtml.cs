@@ -23,11 +23,6 @@ namespace WebApp.Pages
         {
             _taskJob.Queue.Enqueue(Message);
 
-            for (int i = 0; i < 5; i++)
-            {
-                _taskJob.Queue.Enqueue(i.ToString() + '-' + Message);
-            }
-
             TempData["status"] = "Email sent.";
             return Page();
         }
