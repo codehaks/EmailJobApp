@@ -18,19 +18,9 @@ namespace WebApp.Pages
 
         [BindProperty]
         public string Message { get; set; }
-        public void OnGet()
-        {
-
-        }
-
+      
         public async Task<IActionResult> OnPost()
         {
-            //using var socket = new RequestSocket(">tcp://localhost:5500");
-            //socket.SendReady += Socket_SendReady;
-            //System.Threading.Thread.Sleep(2000);
-
-
-            //socket.SendFrame(Message);
             _taskJob.Queue.Enqueue(Message);
 
             for (int i = 0; i < 5; i++)
