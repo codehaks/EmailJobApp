@@ -17,11 +17,19 @@
                 if (_taskJob.Queue.Any())
                 {
                     var msg = _taskJob.Queue.Dequeue();
-                    Console.WriteLine(msg);
+                    await SendEmail(msg);
+                    
                 }
-                _logger.LogInformation("EmailWorker executed.");
+                
                 await Task.Delay(1000, stoppingToken);
+                _logger.LogDebug("Backgroud service executed.");
             }
+        }
+
+        public async Task SendEmail(string msg)
+        {
+            await Task.Delay(2000);
+            _logger.LogWarning("Email Send : " + msg);
         }
     }
 }

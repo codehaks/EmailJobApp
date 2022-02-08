@@ -1,13 +1,20 @@
 using WebApp;
+using Serilog;
+using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Host.UseSerilog((webHostBuilderContext, logger) =>
+{
+    logger.MinimumLevel.Debug()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+            .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+            .Enrich.FromLogContext()
+            .WriteTo.Console();
+});
+
+
 builder.Services.AddRazorPages();
-//builder.Services.AddHostedService<EmailWorker>();
-//builder.Services.AddScoped<IBackgroundTaskQueue, BackgroundTaskQueue>();
-//builder.Services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
-//builder.Services.AddHostedService<QueuedHostedService>();
 builder.Services.AddSingleton<ITaskJob, TaskJob>();
 builder.Services.AddHostedService<EmailWorker>();
 var app = builder.Build();

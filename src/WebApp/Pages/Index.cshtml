@@ -4,12 +4,12 @@
     ViewData["Title"] = "Home page";
 }
 
-@if(TempData["status"] is not null)
+@if (TempData["status"] is not null)
 {
     <div class="alert alert-success" role="alert">@TempData["status"]</div>
 }
 
 <form method="post" class="form">
-    <input class="form-control" asp-for="Message"/>
-    <button class="btn btn-primary"> Send</button>
+    <input class="form-control" asp-for="Message" />
+    <button class="btn btn-primary mt-3"> Send</button>
 </form>
