@@ -13,7 +13,7 @@ builder.Host.UseSerilog((webHostBuilderContext, logger) =>
             .WriteTo.Console();
 });
 
-
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<ITaskJob, TaskJob>();
 builder.Services.AddHostedService<EmailWorker>();
@@ -27,13 +27,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapControllers();
 app.MapRazorPages();
 
 app.Run();

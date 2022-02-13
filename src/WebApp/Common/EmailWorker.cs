@@ -16,7 +16,8 @@
             {
                 if (_taskJob.Queue.Any())
                 {
-                    var msg = _taskJob.Queue.Dequeue();
+                    _logger.LogDebug("{0} message queued.", _taskJob.Queue.Count);
+                    var msg = _taskJob.Queue.Dequeue();                    
                     await SendEmail(msg);
                     
                 }
