@@ -1,8 +1,10 @@
 ﻿
+using System.Collections.Concurrent;
+
 namespace WebApp
 {
     public interface ITaskJob
     {
-        Queue<string> Queue { get; set; }
+        ConcurrentQueue<string> Queue { get; set; }
     }
 }

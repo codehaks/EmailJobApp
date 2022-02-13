@@ -17,13 +17,15 @@
                 if (_taskJob.Queue.Any())
                 {
                     _logger.LogDebug("{0} message queued.", _taskJob.Queue.Count);
-                    var msg = _taskJob.Queue.Dequeue();                    
+                    var success = _taskJob.Queue.TryDequeue(out var msg); 
+                    if (success) { 
                     await SendEmail(msg);
-                    
+                    }
+
                 }
                 
                 await Task.Delay(1000, stoppingToken);
-                _logger.LogDebug("Backgroud service executed.");
+                //_logger.LogDebug("Backgroud service executed.");
             }
         }
 

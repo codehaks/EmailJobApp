@@ -1,11 +1,13 @@
-﻿namespace WebApp
+﻿using System.Collections.Concurrent;
+
+namespace WebApp
 {
     public class TaskJob : ITaskJob
     {
         public TaskJob()
         {
-            Queue= new Queue<string>();
+            Queue= new ConcurrentQueue<string>();
         }
-        public Queue<string> Queue { get; set; } 
+        public ConcurrentQueue<string> Queue { get; set; } 
     }
 }
