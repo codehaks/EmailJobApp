@@ -17,24 +17,27 @@
                 if (_taskJob.Queue.Any())
                 {
                     _logger.LogDebug("{0} message queued.", _taskJob.Queue.Count);
-                    var taskList=new List<Task>();
+                    var taskList = new List<Task>();
 
-                    var queueCount=_taskJob.Queue.Count;
+                    var queueCount = _taskJob.Queue.Count;
 
-                    for (int i=0; i<queueCount; i++)
+                    for (int i = 0; i < queueCount; i++)
                     {
-                        var msg = _taskJob.Queue.Dequeue();
-                        var t = SendEmail(msg);
-                        taskList.Add(t);
+                        var success = _taskJob.Queue.TryDequeue(out var msg);
+                        if (success)
+                        {
+                            var t = SendEmail(msg);
+                            taskList.Add(t);
+                        }
                     }
 
-                    
+
                     await Task.WhenAll(taskList);
                     _logger.LogDebug("{0} emails sent.", queueCount);
 
 
                 }
-                
+
                 await Task.Delay(1000, stoppingToken);
                 //_logger.LogDebug("Backgroud service executed.");
             }
