@@ -29,7 +29,7 @@
 
         public async Task SendEmail(string msg)
         {
-            await Task.Delay(2000);
+            await Task.Delay(3000);
             _logger.LogWarning("Email Send : " + msg);
         }
     }
