@@ -16,11 +16,23 @@
             {
                 if (_taskJob.Queue.Any())
                 {
+                    var taskList=new List<Task>();
+                    var queueCount = _taskJob.Queue.Count;
+
                     _logger.LogDebug("{0} message queued.", _taskJob.Queue.Count);
-                    var success = _taskJob.Queue.TryDequeue(out var msg); 
-                    if (success) { 
-                    await SendEmail(msg);
+                    for (int i = 0; i < queueCount; i++)
+                    {
+                        var success = _taskJob.Queue.TryDequeue(out var msg);
+                        if (success)
+                        {
+                            var t= SendEmail(msg);
+                            taskList.Add(t);
+                        }
                     }
+
+                    await Task.WhenAll(taskList);
+                    
+                  
 
                 }
                 
