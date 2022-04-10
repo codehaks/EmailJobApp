@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32104.313
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "src\WebApp\WebApp.csproj", "{B9ECECF4-28BD-4993-BF55-5C63C48BEB6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailWorker", "src\EmailWorker\EmailWorker.csproj", "{B1FF33C8-0270-436C-9DAE-B17E42BCA46B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B9ECECF4-28BD-4993-BF55-5C63C48BEB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9ECECF4-28BD-4993-BF55-5C63C48BEB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9ECECF4-28BD-4993-BF55-5C63C48BEB6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1FF33C8-0270-436C-9DAE-B17E42BCA46B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1FF33C8-0270-436C-9DAE-B17E42BCA46B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1FF33C8-0270-436C-9DAE-B17E42BCA46B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1FF33C8-0270-436C-9DAE-B17E42BCA46B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
